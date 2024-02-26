@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  error:
+    include-message: ALWAYS
+    include-binding-errors: ALWAYS
+    include-stacktrace: NEVER
+    include-exception: false
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/server
+    username: server
+    password: server
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false

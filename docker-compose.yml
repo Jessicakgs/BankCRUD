@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  serverpostgresql:
+    image: postgres:latest
+    container_name: serverpostgresql
+    hostname: serverpostgresql
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: server
+      POSTGRES_USER: server
+      POSTGRES_PASSWORD: server
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - vai-de-car-network
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    networks:
+      - vai-de-car-network
+
+networks:
+  vai-de-car-network:
+    driver: bridge
